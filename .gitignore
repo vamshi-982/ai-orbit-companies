@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# NestJS / build output
+dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# TypeScript build info
+*.tsbuildinfo
+
+# IDE / editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+# AI/editor assistant files
+.agents/
+.claude/
+.windsurf/
