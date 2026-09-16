@@ -26,73 +26,52 @@ export default async function CompanyDetailPage({
 }: PageProps) {
   const { slug } = await params;
 
-  const response = await fetch(
-    `${API_URL}/companies/${slug}`,
-    {
-      cache: 'no-store',
-    },
-  );
+  const response = await fetch(`${API_URL}/companies/${slug}`, {
+    cache: 'no-store',
+  });
 
   if (!response.ok) {
     return (
       <main className="min-h-screen bg-[#050505] text-white">
-
-        {/* Header */}
-        <header className="border-b border-white/[0.07]">
-          <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 sm:px-8">
-
+        <header className="border-b border-white/[0.08]">
+          <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
             <Link
-              href="/"
-              className="text-xl font-semibold tracking-tight"
+              href="/companies"
+              className="text-lg font-semibold tracking-tight"
             >
-              <span className="text-white">AI</span>
-              <span className="text-gray-400">ORBIT</span>
+              AIORBIT
             </Link>
 
             <Link
               href="/companies"
-              className="text-sm text-gray-500 transition hover:text-white"
+              className="text-sm text-gray-400 transition hover:text-white"
             >
               AI Companies
             </Link>
-
           </div>
         </header>
 
-        {/* Not Found */}
-        <div className="mx-auto max-w-4xl px-5 py-10 sm:px-8">
+        <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-[900px] items-center justify-center px-6">
+          <div className="w-full rounded-2xl border border-white/[0.1] bg-[#0a0a0b] p-10 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-violet-400">
+              404
+            </p>
 
-          <Link
-            href="/companies"
-            className="text-sm text-gray-500 transition hover:text-white"
-          >
-            ← Back to Companies
-          </Link>
-
-          <section className="mt-16 rounded-2xl border border-white/[0.08] bg-white/[0.02] px-6 py-20 text-center sm:mt-20">
-
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/[0.1] bg-white/[0.04] text-xl text-gray-400">
-              ?
-            </div>
-
-            <h1 className="mt-6 text-2xl font-semibold">
+            <h1 className="mb-3 text-3xl font-semibold">
               Company not found
             </h1>
 
-            <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-gray-500">
-              The company you are looking for does not exist or may
-              have been removed.
+            <p className="mb-8 text-sm text-gray-500">
+              The company you are looking for does not exist.
             </p>
 
             <Link
               href="/companies"
-              className="mt-7 inline-flex rounded-xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-gray-200"
+              className="inline-flex rounded-lg border border-white/[0.12] px-5 py-3 text-sm font-medium transition hover:bg-white hover:text-black"
             >
-              Browse companies
+              ← Back to Companies
             </Link>
-
-          </section>
-
+          </div>
         </div>
       </main>
     );
@@ -102,177 +81,257 @@ export default async function CompanyDetailPage({
 
   return (
     <main className="min-h-screen bg-[#050505] text-white">
-
       {/* Header */}
-      <header className="border-b border-white/[0.07]">
-        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 sm:px-8">
-
+      <header className="border-b border-white/[0.08]">
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
           <Link
-            href="/"
-            className="text-xl font-semibold tracking-tight"
+            href="/companies"
+            className="text-lg font-semibold tracking-tight"
           >
-            <span className="text-white">AI</span>
-            <span className="text-gray-400">ORBIT</span>
+            AIORBIT
           </Link>
 
           <Link
             href="/companies"
-            className="text-sm text-gray-500 transition hover:text-white"
+            className="text-sm text-gray-400 transition hover:text-white"
+          >
+            AI Companies
+          </Link>
+        </div>
+      </header>
+
+      <div className="mx-auto max-w-[1400px] px-6 py-8">
+        {/* Breadcrumb */}
+        <div className="mb-8 flex items-center gap-2 text-sm text-gray-500">
+          <Link
+            href="/companies"
+            className="transition hover:text-white"
+          >
+            Home
+          </Link>
+
+          <span>›</span>
+
+          <Link
+            href="/companies"
+            className="transition hover:text-white"
           >
             AI Companies
           </Link>
 
-        </div>
-      </header>
+          <span>›</span>
 
-      <div className="mx-auto max-w-5xl px-5 pb-24 sm:px-8">
-
-        {/* Back */}
-        <div className="pt-8">
-          <Link
-            href="/companies"
-            className="inline-flex items-center text-sm text-gray-500 transition hover:text-white"
-          >
-            ← Back to Companies
-          </Link>
+          <span className="text-gray-300">{company.name}</span>
         </div>
 
         {/* Hero */}
-        <section className="relative mt-8 overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02]">
-
-          {/* Background glow */}
-          <div className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-purple-500/[0.08] blur-3xl" />
-
-          <div className="relative p-7 sm:p-10">
-
-            {/* Company Identity */}
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-white/[0.1] bg-white/[0.04] text-3xl font-semibold">
-                {company.name.charAt(0)}
+        <section className="rounded-2xl border border-white/[0.1] bg-[#0a0a0c] p-6 md:p-8">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+              {/* Company logo / initial */}
+              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl border border-white/[0.1] bg-[#111113] text-4xl font-semibold text-white">
+                {company.logo ? (
+                  <img
+                    src={company.logo}
+                    alt={`${company.name} logo`}
+                    className="h-full w-full rounded-2xl object-contain p-3"
+                  />
+                ) : (
+                  company.name.charAt(0).toUpperCase()
+                )}
               </div>
 
-              <div className="min-w-0">
+              <div>
+                <div className="mb-3 flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-violet-400/30 bg-violet-400/[0.08] px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-violet-300">
+                    {company.industry}
+                  </span>
 
-                <div className="mb-3 inline-flex rounded-full border border-purple-400/20 bg-purple-400/[0.06] px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-purple-300">
-                  {company.industry}
+                  {company.headquarters && (
+                    <span className="rounded-full border border-white/[0.1] bg-white/[0.03] px-3 py-1 text-[11px] text-gray-400">
+                      {company.headquarters}
+                    </span>
+                  )}
                 </div>
 
-                <h1 className="text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
                   {company.name}
                 </h1>
 
-                <p className="mt-5 max-w-3xl text-sm leading-7 text-gray-400 sm:text-base sm:leading-8">
+                <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-400 md:text-base">
                   {company.description}
                 </p>
 
-              </div>
+                <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-gray-500">
+                  {company.foundedYear && (
+                    <span>Founded {company.foundedYear}</span>
+                  )}
 
+                  {company.headquarters && (
+                    <>
+                      <span className="text-white/20">•</span>
+                      <span>{company.headquarters}</span>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
 
+            {/* Website button */}
+            {company.website && (
+              <a
+                href={company.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-gray-200"
+              >
+                Visit Website
+                <span className="ml-2">↗</span>
+              </a>
+            )}
           </div>
         </section>
 
-        {/* Company Information */}
-        <section className="mt-6">
+        {/* Main content */}
+        <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+          {/* Overview */}
+          <section className="rounded-2xl border border-white/[0.1] bg-[#0a0a0c] p-6 md:p-8">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-400/[0.1] text-violet-300">
+                ◈
+              </div>
 
-          <div className="mb-4">
-            <h2 className="text-lg font-medium">
+              <h2 className="text-lg font-semibold">
+                Company Overview
+              </h2>
+            </div>
+
+            <p className="text-sm leading-7 text-gray-400 md:text-base">
+              {company.description}
+            </p>
+          </section>
+
+          {/* Specifications */}
+          <aside className="rounded-2xl border border-white/[0.1] bg-[#0a0a0c] p-6">
+            <div className="mb-5 flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-400/[0.1] text-violet-300">
+                ≡
+              </div>
+
+              <h2 className="text-lg font-semibold">
+                Specifications
+              </h2>
+            </div>
+
+            <div className="divide-y divide-white/[0.08]">
+              <div className="flex items-center justify-between gap-4 py-4">
+                <span className="text-sm text-gray-500">
+                  Industry
+                </span>
+
+                <span className="text-right text-sm text-gray-200">
+                  {company.industry}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between gap-4 py-4">
+                <span className="text-sm text-gray-500">
+                  Headquarters
+                </span>
+
+                <span className="text-right text-sm text-gray-200">
+                  {company.headquarters || 'Not available'}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between gap-4 py-4">
+                <span className="text-sm text-gray-500">
+                  Founded
+                </span>
+
+                <span className="text-right text-sm text-gray-200">
+                  {company.foundedYear || 'Not available'}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between gap-4 py-4">
+                <span className="text-sm text-gray-500">
+                  Website
+                </span>
+
+                <span className="text-sm text-gray-200">
+                  {company.website ? 'Available' : 'Not available'}
+                </span>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        {/* Company Information */}
+        <section className="mt-6 rounded-2xl border border-white/[0.1] bg-[#0a0a0c] p-6 md:p-8">
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold">
               Company Information
             </h2>
 
-            <p className="mt-1 text-xs text-gray-600">
+            <p className="mt-1 text-sm text-gray-500">
               Key information about {company.name}
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
-
-            {/* Headquarters */}
-            <div className="grid gap-2 border-b border-white/[0.06] px-5 py-5 sm:grid-cols-[180px_1fr] sm:items-center">
-
-              <span className="text-xs uppercase tracking-wider text-gray-600">
+          <div className="divide-y divide-white/[0.08]">
+            <div className="grid gap-2 py-4 sm:grid-cols-[180px_1fr] sm:gap-6">
+              <span className="text-xs font-medium uppercase tracking-[0.12em] text-gray-500">
                 Headquarters
               </span>
 
-              <span className="text-sm text-gray-300">
-                {company.headquarters ?? 'Not available'}
+              <span className="text-sm text-gray-200">
+                {company.headquarters || 'Not available'}
               </span>
-
             </div>
 
-            {/* Founded */}
-            <div className="grid gap-2 border-b border-white/[0.06] px-5 py-5 sm:grid-cols-[180px_1fr] sm:items-center">
-
-              <span className="text-xs uppercase tracking-wider text-gray-600">
+            <div className="grid gap-2 py-4 sm:grid-cols-[180px_1fr] sm:gap-6">
+              <span className="text-xs font-medium uppercase tracking-[0.12em] text-gray-500">
                 Founded
               </span>
 
-              <span className="text-sm text-gray-300">
-                {company.foundedYear ?? 'Not available'}
+              <span className="text-sm text-gray-200">
+                {company.foundedYear || 'Not available'}
               </span>
-
             </div>
 
-            {/* Industry */}
-            <div className="grid gap-2 px-5 py-5 sm:grid-cols-[180px_1fr] sm:items-center">
-
-              <span className="text-xs uppercase tracking-wider text-gray-600">
+            <div className="grid gap-2 py-4 sm:grid-cols-[180px_1fr] sm:gap-6">
+              <span className="text-xs font-medium uppercase tracking-[0.12em] text-gray-500">
                 Industry
               </span>
 
-              <span className="text-sm text-gray-300">
+              <span className="text-sm text-gray-200">
                 {company.industry}
               </span>
-
             </div>
-
           </div>
-
         </section>
 
-        {/* Website */}
-        <section className="mt-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 sm:flex sm:items-center sm:justify-between">
+        {/* Bottom navigation */}
+        <div className="mt-8 flex flex-col gap-4 border-t border-white/[0.08] pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <Link
+            href="/companies"
+            className="text-sm text-gray-400 transition hover:text-white"
+          >
+            ← Back to all companies
+          </Link>
 
-          <div>
-            <p className="text-sm font-medium text-gray-200">
-              Official website
-            </p>
-
-            <p className="mt-1 text-xs text-gray-600">
-              Visit {company.name} online
-            </p>
-          </div>
-
-          {company.website ? (
+          {company.website && (
             <a
               href={company.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex rounded-xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-gray-200 sm:mt-0"
+              className="text-sm text-violet-300 transition hover:text-violet-200"
             >
-              Visit Website ↗
+              Visit official website ↗
             </a>
-          ) : (
-            <span className="mt-4 text-sm text-gray-600 sm:mt-0">
-              Website unavailable
-            </span>
           )}
-
-        </section>
-
-        {/* Bottom Navigation */}
-        <div className="mt-10 border-t border-white/[0.07] pt-6">
-
-          <Link
-            href="/companies"
-            className="text-sm text-gray-500 transition hover:text-white"
-          >
-            ← Explore all AI Companies
-          </Link>
-
         </div>
-
       </div>
     </main>
   );

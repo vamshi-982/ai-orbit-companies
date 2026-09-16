@@ -13,17 +13,17 @@ const prisma = new PrismaClient({
 async function main() {
   await prisma.company.createMany({
     data: [
-        {
-  name: 'The AI Signal',
-  slug: 'the-ai-signal',
-  description:
-    'Media company providing a daily AI newsletter and podcast, curating the most important developments in artificial intelligence for professionals and businesses.',
-  industry: 'AI Media & Information',
-  website: 'https://theaisignal.com',
-  headquarters: 'Mumbai, India',
-  foundedYear: 2026,
-},
- {
+      {
+        name: 'The AI Signal',
+        slug: 'the-ai-signal',
+        description:
+          'Media company providing a daily AI newsletter and podcast, curating the most important developments in artificial intelligence for professionals and businesses.',
+        industry: 'AI Media & Information',
+        website: 'https://theaisignal.com',
+        headquarters: 'Mumbai, India',
+        foundedYear: 2026,
+      },
+      {
         name: 'OpenAI',
         slug: 'openai',
         description:
@@ -64,6 +64,16 @@ async function main() {
         foundedYear: 2023,
       },
       {
+        name: 'The Rundown AI',
+        slug: 'the-rundown-ai',
+        description:
+          'Daily AI newsletter and podcast delivering concise updates on artificial intelligence breakthroughs, tools, and industry trends.',
+        industry: 'AI Media & Information',
+        website: 'https://www.therundown.ai',
+        headquarters: 'Remote / Global',
+        foundedYear: 2023,
+      },
+      {
         name: 'Cohere',
         slug: 'cohere',
         description:
@@ -74,6 +84,7 @@ async function main() {
         foundedYear: 2019,
       },
     ],
+    skipDuplicates: true,
   });
 }
 
