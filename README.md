@@ -556,3 +556,8 @@ This project implements a complete **AI Companies module end-to-end**, including
 - Project documentation
 
 The implementation is built with **Next.js, TypeScript, NestJS, Prisma, and PostgreSQL**.
+## Live Demo
+
+- Frontend: https://ai-orbit-companies-six.vercel.app/
+- Backend API: https://ai-orbit-companies.onrender.com/companies
+- GitHub: https://github.com/vamshi-982/ai-orbit-companies
